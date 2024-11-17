@@ -10,20 +10,17 @@
 #include "usart2.h"
 /*****************************
 
-   1.²É¼¯BQ76930µÄ14Î»ADCµÄÔöÒæºÍÆ«ÖÃµçÑ¹:void get_offset(void)
-   2.²É¼¯µ¥ÌåµçÑ¹:void Get_Batteryx(void),ÆäÖĞxÈ¡Öµ1-10£»
-   3.BQ76930³õÊ¼»¯ void BQ_config(void)
-   4.¶ÁÈ¡BQ76930¼Ä´æÆ÷Öµ£º void readbqstate(void)
-   5.
+   1.é‡‡é›†BQ76930çš„14ä½ADCçš„å¢ç›Šå’Œåç½®ç”µå‹:void get_offset(void)
+   2.é‡‡é›†å•ä½“ç”µå‹:void Get_Batteryx(void),å…¶ä¸­xå–å€¼1-10ï¼›
+   3.BQ76930åˆå§‹åŒ– void BQ_config(void)
+   4.è¯»å–BQ76930å¯„å­˜å™¨å€¼ï¼š void readbqstate(void)
 ******************************/
-/***********************
-fuction:void get_offset(void)
-************************/
+
 
 /****************************************
 fuction: void Get_Battery1(void)
-description:ÏµÍ³¼Ä´æÆ÷ÅäÖÃ,Ïê¼ûÊÖ²áµÚ69Ò³
-Parameters:¿ªÆôCADC½øĞĞµçÁ÷²É¼¯
+description:ç³»ç»Ÿå¯„å­˜å™¨é…ç½®
+Parameters:å¼€å¯CADCè¿›è¡Œç”µæµé‡‡é›†
 ******************************************/
  void SYS_CONF(void)
  {
@@ -34,7 +31,7 @@ Parameters:¿ªÆôCADC½øĞĞµçÁ÷²É¼¯
 
 /****************************************
 fuction: void Get_Battery1(void)
-description:»ñÈ¡µÚ1ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬1å·å•ä½“ç”µæ± ç”µå‹
 Parameters:batterylval[0],battery1val[1];
 ******************************************/
  u8 READ_BSTATUS1(void)
@@ -45,7 +42,7 @@ Parameters:batterylval[0],battery1val[1];
  }
 /****************************************
 fuction: void Get_Battery1(void)
-description:»ñÈ¡µÚ1ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬1å·å•ä½“ç”µæ± ç”µå‹
 Parameters:batterylval[0],battery1val[1];
 ******************************************/
  u8 READ_BSTATUS2(void)
@@ -56,7 +53,7 @@ Parameters:batterylval[0],battery1val[1];
  }
 /****************************************
 fuction: void Get_Battery1(void)
-description:»ñÈ¡µÚ1ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬1å·å•ä½“ç”µæ± ç”µå‹
 Parameters:batterylval[0],battery1val[1];
 ******************************************/
  u8 READ_BSTATUS3(void)
@@ -67,7 +64,7 @@ Parameters:batterylval[0],battery1val[1];
  }
  /****************************************
 fuction: void Get_Battery1(void)
-description:»ñÈ¡µÚ1ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬1å·å•ä½“ç”µæ± ç”µå‹
 Parameters:batterylval[0],battery1val[1];
 ******************************************/
  u8 READ_BFLAG1(void)
@@ -78,7 +75,7 @@ Parameters:batterylval[0],battery1val[1];
  }
   /****************************************
 fuction: void Get_Battery1(void)
-description:»ñÈ¡µÚ1ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬1å·å•ä½“ç”µæ± ç”µå‹
 Parameters:batterylval[0],battery1val[1];
 ******************************************/
  u8 READ_BFLAG2(void)
@@ -118,8 +115,7 @@ unsigned char can_buf10[8]={0xAA,0x10};
   batteryval1= (readbattbuf[1] << 8) +readbattbuf[0];
 
 
-	Batteryval[0]= batteryval1*5/32;
-//		printf("VOL1=%d\r\n",Batteryval[0]);
+	Batteryval[0]= batteryval1 *5 / 32;
 
 	shang[2]=Batteryval[0]>>8;
 	shang[3]=Batteryval[0]&0XFF;
@@ -131,7 +127,7 @@ unsigned char can_buf10[8]={0xAA,0x10};
 
 /****************************************
 fuction: void Get_Battery2(void)
-description:»ñÈ¡µÚ2ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬2å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery2val[0],battery2val[1];
 ******************************************/
  void Get_Battery2(void)
@@ -145,9 +141,8 @@ Parameters:battery2val[0],battery2val[1];
  
   batteryval1= (readbattbuf[1] << 8) +readbattbuf[0];
 
-//	printf("VOL2=%d\r\n",batteryval1*5/32);
 
-		Batteryval[1]= batteryval1*5/32;
+	Batteryval[1]= batteryval1*5/32;
 
 	shang[4]=Batteryval[1]>>8;
 	shang[5]=Batteryval[1]&0XFF;
@@ -158,7 +153,7 @@ Parameters:battery2val[0],battery2val[1];
 }
 /****************************************
 fuction: void Get_Battery3(void)
-description:»ñÈ¡µÚ3ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬3å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery3val[0],battery3val[1];
 ******************************************/
  void Get_Battery3(void)
@@ -172,9 +167,7 @@ Parameters:battery3val[0],battery3val[1];
  
   batteryval1= (readbattbuf[1] << 8) +readbattbuf[0];
 
-//	printf("VOL3=%d\r\n",batteryval1*5/32);
-
-	Batteryval[2]= batteryval1*5/32;
+	Batteryval[2]= batteryval1 *5 / 32;
 
 	shang[6]=Batteryval[2]>>8;
 	shang[7]=Batteryval[2]&0XFF;
@@ -186,7 +179,7 @@ Parameters:battery3val[0],battery3val[1];
 }
 /****************************************
 fuction: void Get_Battery4(void)
-description:»ñÈ¡µÚ4ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬4å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery4val[0],battery4val[1];
 ******************************************/
  void Get_Battery4(void)
@@ -200,9 +193,9 @@ Parameters:battery4val[0],battery4val[1];
  
   batteryval1= (readbattbuf[1] << 8) +readbattbuf[0];
 
-//	printf("VOL4=%d\r\n",batteryval1*5/32);
 
-		Batteryval[3]= batteryval1*5/32;
+
+	Batteryval[3]= batteryval1*5/32;
 
 	shang[8]=Batteryval[3]>>8;
 	shang[9]=Batteryval[3]&0XFF;
@@ -210,9 +203,11 @@ Parameters:battery4val[0],battery4val[1];
 	can_buf2[2]=shang[8];
 	can_buf2[3]=shang[9];
 
-}/****************************************
+}
+
+/****************************************
 fuction: void Get_Battery5(void)
-description:»ñÈ¡µÚ5ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬5å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery5val[0],battery5val[1];
 ******************************************/
  void Get_Battery5(void)
@@ -226,9 +221,8 @@ Parameters:battery5val[0],battery5val[1];
  
   batteryval1= (readbattbuf[1] << 8) +readbattbuf[0];
 
-//	printf("VOL5=%d\r\n",batteryval1*5/32);
 
-		Batteryval[4]= batteryval1*5/32;
+	Batteryval[4]= batteryval1 *5 / 32;
 
 	shang[10]=Batteryval[4]>>8;
 	shang[11]=Batteryval[4]&0XFF;
@@ -239,7 +233,7 @@ Parameters:battery5val[0],battery5val[1];
 }
 /****************************************
 fuction: void Get_Battery6(void)
-description:»ñÈ¡µÚ6ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬6å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery6val[0],battery6val[1];
 ******************************************/
  void Get_Battery6(void)
@@ -253,9 +247,7 @@ Parameters:battery6val[0],battery6val[1];
  
   batteryval1= (readbattbuf[1] << 8) +readbattbuf[0];
 
-//	printf("VOL6=%d\r\n",batteryval1*5/32);
-
-		Batteryval[5]= batteryval1*5/32;
+	Batteryval[5]= batteryval1*5/32;
 
 	shang[12]=Batteryval[5]>>8;
 	shang[13]=Batteryval[5]&0XFF;
@@ -263,9 +255,11 @@ Parameters:battery6val[0],battery6val[1];
 	can_buf2[6]=shang[12];
 	can_buf2[7]=shang[13];
 
-}/****************************************
+}
+
+/****************************************
 fuction: void Get_Battery7(void)
-description:»ñÈ¡µÚ7ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬7å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery7val[0],battery7val[1];
 ******************************************/
  void Get_Battery7(void)
@@ -281,7 +275,7 @@ Parameters:battery7val[0],battery7val[1];
 
 	printf("VOL7=%d\r\n",batteryval1*5/32);
 
-		Batteryval[6]= batteryval1*5/32;
+	Batteryval[6]= batteryval1*5/32;
 
 	shang[14]=Batteryval[6]>>8;
 	shang[15]=Batteryval[6]&0XFF;
@@ -292,7 +286,7 @@ Parameters:battery7val[0],battery7val[1];
 }
 /****************************************
 fuction: void Get_Battery8(void)
-description:»ñÈ¡µÚ8ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬8å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery8val[0],battery8val[1];
 ******************************************/
  void Get_Battery8(void)
@@ -308,7 +302,7 @@ Parameters:battery8val[0],battery8val[1];
 
 	printf("VOL8=%d\r\n",batteryval1*5/32);
 
-		Batteryval[7]= batteryval1*5/32;
+	Batteryval[7]= batteryval1*5/32;
 
 	shang[16]=Batteryval[7]>>8;
 	shang[17]=Batteryval[7]&0XFF;
@@ -320,7 +314,7 @@ Parameters:battery8val[0],battery8val[1];
 
 /****************************************
 fuction: void Get_Battery9(void)
-description:»ñÈ¡µÚ9ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬9å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery9val[0],battery9val[1];
 ******************************************/
 void Get_Battery9(void)
@@ -350,7 +344,7 @@ void Get_Battery9(void)
 }
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ10ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬10å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery10(void)
@@ -379,7 +373,7 @@ void Get_Battery10(void)
 }
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ11ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬11å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery11(void)
@@ -399,7 +393,7 @@ void Get_Battery11(void)
 
 	shang[22]=Batteryval[10]>>8;
 	shang[23]=Batteryval[10]&0XFF;
-  shang1[6]=shang[22];
+  	shang1[6]=shang[22];
 	shang1[7]=shang[23];
 	
 	can_buf4[4]=shang[22];
@@ -408,7 +402,7 @@ void Get_Battery11(void)
 }
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ12ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬12å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery12(void)
@@ -424,11 +418,11 @@ void Get_Battery12(void)
 
 	printf("VOL12=%d\r\n",batteryval1*5/32);
 
-		Batteryval[11]= batteryval1*5/32;
+	Batteryval[11]= batteryval1*5/32;
 
 	shang[24]=Batteryval[11]>>8;
 	shang[25]=Batteryval[11]&0XFF;
-  shang1[8]=shang[24];
+  	shang1[8]=shang[24];
 	shang1[9]=shang[25];
 
 	can_buf4[6]=shang[24];
@@ -437,7 +431,7 @@ void Get_Battery12(void)
 }
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ13ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬13å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery13(void)
@@ -453,11 +447,11 @@ void Get_Battery13(void)
 
 	printf("VOL13=%d\r\n",batteryval1*5/32);
 
-		Batteryval[12]= batteryval1*5/32;
+	Batteryval[12]= batteryval1*5/32;
 
 	shang[26]=Batteryval[12]>>8;
 	shang[27]=Batteryval[12]&0XFF;
-  shang1[10]=shang[26];
+  	shang1[10]=shang[26];
 	shang1[11]=shang[27];
 	
 	can_buf5[2]=shang[26];
@@ -467,7 +461,7 @@ void Get_Battery13(void)
 
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ14ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬14å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery14(void)
@@ -483,11 +477,11 @@ void Get_Battery14(void)
 
 	printf("VOL14=%d\r\n",batteryval1*5/32);
 
-		Batteryval[13]= batteryval1*5/32;
+	Batteryval[13]= batteryval1*5/32;
 
 	shang[28]=Batteryval[13]>>8;
 	shang[29]=Batteryval[13]&0XFF;
-  shang1[12]=shang[28];
+  	shang1[12]=shang[28];
 	shang1[13]=shang[29];
 	
 	can_buf5[4]=shang[28];
@@ -496,7 +490,7 @@ void Get_Battery14(void)
 }
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ15ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬15å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery15(void)
@@ -512,11 +506,11 @@ void Get_Battery15(void)
 
 	printf("VOL15=%d\r\n",batteryval1*5/32);
 
-		Batteryval[14]= batteryval1*5/32;
+	Batteryval[14]= batteryval1*5/32;
 
 	shang[30]=Batteryval[14]>>8;
 	shang[31]=Batteryval[14]&0XFF;
-  shang1[14]=shang[30];
+  	shang1[14]=shang[30];
 	shang1[15]=shang[31];
 	
 	can_buf5[6]=shang[30];
@@ -525,7 +519,7 @@ void Get_Battery15(void)
 }
 /****************************************
 fuction: void Get_Battery10(void)
-description:»ñÈ¡µÚ16ºÅµ¥Ìåµç³ØµçÑ¹
+description:è·å–ç¬¬16å·å•ä½“ç”µæ± ç”µå‹
 Parameters:battery10val[0],battery10val[1];
 ******************************************/
 void Get_Battery16(void)
@@ -545,16 +539,16 @@ void Get_Battery16(void)
 
 	shang[32]=Batteryval[15]>>8;
 	shang[33]=Batteryval[15]&0XFF;
-  shang1[16]=shang[32];
+  	shang1[16]=shang[32];
 	shang1[17]=shang[33];
 	
 	can_buf6[2]=shang[32];
 	can_buf6[3]=shang[33];
 
 }
-/****************************************
+
 /****************************
-»ñÈ¡ËùÓĞµç³ØµÄ×ÜµçÑ¹Öµ²¢ÓÃ´®¿Ú1´òÓ¡³öÀ´
+è·å–æ‰€æœ‰ç”µæ± çš„æ€»ç”µå‹å€¼å¹¶ç”¨ä¸²å£1æ‰“å°å‡ºæ¥
  *****************************/
 float SOC;
 void Get_Update_ALL_Data(void)
@@ -565,16 +559,13 @@ void Get_Update_ALL_Data(void)
 	   Sum_val+= Batteryval[i];
 	}
 	  Batteryval[16] = Sum_val;
-//		printf("VOL_ALL=%d\r\n",Batteryval[16]);
 
-	
-	
 	shang[34]=Batteryval[16]>>24;
 	shang[35]=Batteryval[16]>>16;
 	shang[36]=Batteryval[16]>>8;
 	shang[37]=Batteryval[16]&0XFF;
 	
-  shang2[10]=shang[36];
+  	shang2[10]=shang[36];
 	shang2[11]=shang[37];
 
 	can_buf6[4]=shang[34];
@@ -594,10 +585,9 @@ float SOC;
    SOC = (float)Batteryval[1];
 	SOC = (SOC-2800)/(4200-2800)*100;
 	Batteryval[17] = SOC;
-//	printf("soc=%d\r\n",Batteryval[17]);
-//	Batteryval[7] = SOC;
-  shang[38]=(char)Batteryval[17];
-  shang2[12]=0;
+
+  	shang[38]=(char)Batteryval[17];
+  	shang2[12]=0;
 	shang2[13]=shang[38];
 	can_buf7[2]=shang[38];
 
@@ -612,11 +602,11 @@ float SOC;
   
 /****************************************
 fuction: void BQ_1_config(void)
-description:BQ76930³õÊ¼»¯
+description:BQ76930åˆå§‹åŒ–
 Parameters: None
- //0x04¼Ä´æÆ÷0x19¶ÔÓ¦SCDÑÓÊ±70uS£¬·Åµç¶ÌÂ·µçÑ¹33mV£»
- //0x05¼Ä´æÆ÷ÉèÖÃ¼ì²âµçÁ÷Îª1-shotÄ£Ê½£»
- //0x06¼Ä´æÆ÷0x39¶ÔÓ¦OCDµÄÑÓÊ±Ê±¼ä80mS£¬·Åµç¹ıÁ÷µçÑ¹33mV£»¶ÌÂ·ºÍ¹ıÁ÷¶ÔÓ¦µçÁ÷¶¼ÊÇ60A.
+ //0x04å¯„å­˜å™¨0x19å¯¹åº”SCDå»¶æ—¶70uSï¼Œæ”¾ç”µçŸ­è·¯ç”µå‹33mVï¼›
+ //0x05å¯„å­˜å™¨è®¾ç½®æ£€æµ‹ç”µæµä¸º1-shotæ¨¡å¼ï¼›
+ //0x06å¯„å­˜å™¨0x39å¯¹åº”OCDçš„å»¶æ—¶æ—¶é—´80mSï¼Œæ”¾ç”µè¿‡æµç”µå‹33mVï¼›çŸ­è·¯å’Œè¿‡æµå¯¹åº”ç”µæµéƒ½æ˜¯60A.
 ******************************************/
 unsigned char BQ769_INITdata[11]={0xFF,     0x00,    0x00,    0x18,    0X43,      0x00,     0x00,    0x00,    0x00,   0x00,  0x19};
 void BQ_1_config(void)
@@ -632,9 +622,8 @@ void BQ_1_config(void)
 
 
 /****************************************
-/****************************************
 fuction:void SHIP_1_BQ769(void)
-description:BQ76930½øÈëµÍ¹¦ºÄÄ£Ê½
+description:BQ76930è¿›å…¥ä½åŠŸè€—æ¨¡å¼
 Parameters: None
 ******************************************/
 void SHIP_1_BQ769(void)
@@ -649,7 +638,7 @@ void SHIP_1_BQ769(void)
 
 /****************************************
 fuction:void SHIP_2_BQ769(void)
-description:´ÓBQ76930µÍ¹¦ºÄÄ£Ê½»½ĞÑ
+description:ä»BQ76930ä½åŠŸè€—æ¨¡å¼å”¤é†’
 Parameters: None
 ******************************************/
 void WAKE_1_BQ769(void)
@@ -662,7 +651,7 @@ void WAKE_1_BQ769(void)
  
  /****************************************
 fuction: void Get_BQCurrent(void)
-description:BQ76930µçÁ÷²âÁ¿£¬²ÉÑùµç×è°´4m¦¸/8¼ÆËã
+description:BQ76930ç”µæµæµ‹é‡ï¼Œé‡‡æ ·ç”µé˜»æŒ‰4mÎ©/8è®¡ç®—
 Parameters: None
 ******************************************/
 
@@ -674,13 +663,13 @@ Parameters: None
    unsigned char Currentbuf[1];
 	 readCurrentbuf[1]=IIC1_read_one_byte(0X4C);
    readCurrentbuf[0]=IIC1_read_one_byte(0X4D);
-//	 printf("¸ßÎ»=%X ", (readCurrentbuf[1]& (1 << 7)) == 0 ? 0 : 1);
+//	 printf("é«˜ä½=%X ", (readCurrentbuf[1]& (1 << 7)) == 0 ? 0 : 1);
    Currentbufval = ((readCurrentbuf[1]&0X7F) << 8)+readCurrentbuf[0];
 
 //   Currentbufval = ((readCurrentbuf[1]) << 8)+readCurrentbuf[0];
 //	 printf("CUR=%d\r\n",Currentbufval);
    Currentbufval =200*Currentbufval/(26837*4/3/1000);
-//	 printf("µçÁ÷=%d\r\n",Currentbufval);
+//	 printf("ç”µæµ=%d\r\n",Currentbufval);
 	 Batteryval[18]=Currentbufval;
 	 shang[39]=readCurrentbuf[1]& 0X80 ;
 	 shang[40]=Currentbufval>>8;
@@ -696,7 +685,7 @@ Parameters: None
  }
  /****************************************
 fuction: void Get_BQ_1_Temp(void)
-description:BQ76930 103ATÎÂ¶È²âÁ¿
+description:BQ76930 103ATæ¸©åº¦æµ‹é‡
 Parameters: None
 ******************************************/
 
@@ -800,7 +789,7 @@ Parameters: None
 	 
  }
  /****************************************
-fuction: ¾ùºâµÄ1¡¢2¡¢3¡¢4¡¢5¡¢6¡¢7¡¢8¡¢9¡¢10·Ö±ğ±íÊ¾µç³Ø×éÉÏµÚ1µ½10½ÚµÄ¾ùºâ
+fuction: å‡è¡¡çš„1ã€2ã€3ã€4ã€5ã€6ã€7ã€8ã€9ã€10åˆ†åˆ«è¡¨ç¤ºç”µæ± ç»„ä¸Šç¬¬1åˆ°10èŠ‚çš„å‡è¡¡
 description:
 Parameters: None
 ******************************************/
@@ -1025,7 +1014,7 @@ void BMS_STA(void)
 	  for(n=0;n<60;n++)
 
 		{
-			USART_SendData(USART1, shang[n]); //·¢ËÍÒ»¸ö×Ö½ÚÊı¾İ
+			USART_SendData(USART1, shang[n]); //å‘é€ä¸€ä¸ªå­—èŠ‚æ•°æ®
 			delay_ms(10);
 			
 		}
@@ -1064,49 +1053,49 @@ void BMS_STA(void)
   delay_ms(200);
   UartSend("DIR(1);\r\n");
   delay_ms(200);
-	sprintf(NEW,"DCV16(0,0,'%s%d%s',3);\r\n","µÚÒ»½ÚµçÑ¹:",Batteryval[0],"mV"); 
+	sprintf(NEW,"DCV16(0,0,'%s%d%s',3);\r\n","ç¬¬ä¸€èŠ‚ç”µå‹:",Batteryval[0],"mV"); 
   UartSend(NEW); 
   
 	delay_ms(200); 
 
-	sprintf(NEW,"DCV16(0,20,'%s%d%s',3);\r\n","µÚ¶ş½ÚµçÑ¹:",Batteryval[1],"mV"); 
+	sprintf(NEW,"DCV16(0,20,'%s%d%s',3);\r\n","ç¬¬äºŒèŠ‚ç”µå‹:",Batteryval[1],"mV"); 
   UartSend(NEW); 
 		
   delay_ms(200);
   
 	
-	sprintf(NEW,"DCV16(0,40,'%s%d%s',3);\r\n","µÚÈı½ÚµçÑ¹:",Batteryval[2],"mV"); 
+	sprintf(NEW,"DCV16(0,40,'%s%d%s',3);\r\n","ç¬¬ä¸‰èŠ‚ç”µå‹:",Batteryval[2],"mV"); 
   UartSend(NEW); 
   
 	delay_ms(200); 
-	sprintf(NEW,"DCV16(0,60,'%s%d%s',3);\r\n","µÚËÄ½ÚµçÑ¹:",Batteryval[3],"mV"); 
+	sprintf(NEW,"DCV16(0,60,'%s%d%s',3);\r\n","ç¬¬å››èŠ‚ç”µå‹:",Batteryval[3],"mV"); 
   UartSend(NEW); 
   
 	delay_ms(200); 
-	sprintf(NEW,"DCV16(0,80,'%s%d%s',3);\r\n","µÚÎå½ÚµçÑ¹:",Batteryval[4],"mV"); 
+	sprintf(NEW,"DCV16(0,80,'%s%d%s',3);\r\n","ç¬¬äº”èŠ‚ç”µå‹:",Batteryval[4],"mV"); 
   UartSend(NEW); 
   
 	delay_ms(200); 
-	sprintf(NEW,"DCV16(0,100,'%s%d%s',3);\r\n","µÚÁù½ÚµçÑ¹:",Batteryval[5],"mV"); 
+	sprintf(NEW,"DCV16(0,100,'%s%d%s',3);\r\n","ç¬¬å…­èŠ‚ç”µå‹:",Batteryval[5],"mV"); 
   UartSend(NEW); 
   	delay_ms(1000);
 	UartSend("CLR(61);\r\n");
   delay_ms(200);
 
 	delay_ms(200); 
-	sprintf(NEW,"DCV16(0,00,'%s%d%s',3);\r\n","×ÜµçÑ¹:",Batteryval[16],"mV");
+	sprintf(NEW,"DCV16(0,00,'%s%d%s',3);\r\n","æ€»ç”µå‹:",Batteryval[16],"mV");
 	
   UartSend(NEW);   
   delay_ms(200); 
-	sprintf(NEW,"DCV16(0,20,'%s%d%s',3);\r\n","µç³ØSOCÎª:",Batteryval[17],"%"); 
+	sprintf(NEW,"DCV16(0,20,'%s%d%s',3);\r\n","ç”µæ± SOCä¸º:",Batteryval[17],"%"); 
   UartSend(NEW); 
   
 	delay_ms(200); 
-	sprintf(NEW,"DCV16(0,40,'%s%.2f%s',3);\r\n","µç³ØÎÂ¶ÈÎª:",Tempval_1,"¡æ"); 
+	sprintf(NEW,"DCV16(0,40,'%s%.2f%s',3);\r\n","ç”µæ± æ¸©åº¦ä¸º:",Tempval_1,"â„ƒ"); 
   UartSend(NEW);
 
 	delay_ms(200); 
-	sprintf(NEW,"DCV16(0,60,'%s%d%s',3);\r\n","µçÁ÷:",Batteryval[18],"mA"); 
+	sprintf(NEW,"DCV16(0,60,'%s%d%s',3);\r\n","ç”µæµ:",Batteryval[18],"mA"); 
   UartSend(NEW); 
   
 	delay_ms(200);
@@ -1128,7 +1117,7 @@ void BMS_STA(void)
     Get_Battery4();
     Get_Battery5();
     Get_Battery6(); 	
-		Get_Update_ALL_Data();//×ÜµçÑ¹
+		Get_Update_ALL_Data();//æ€»ç”µå‹
 	  Get_SOC();
     Get_SH367309_Temp1();
 	  Get_SH367309_Temp2();
@@ -1144,8 +1133,8 @@ void BMS_STA(void)
  
 /****************************************
 fuction:void readbqstate(void)
-description:¶ÁÈ¡±¨¾¯ĞÅºÅÖµ
-Parameters: UV_Alarm_flag£OOV_Alarm_flag
+description:è¯»å–æŠ¥è­¦ä¿¡å·å€¼
+Parameters: UV_Alarm_flagî–•OV_Alarm_flag
             SCD_Alarm_flag,OCD_Alarm_flag
 ******************************************/
 
