@@ -64,8 +64,8 @@
 #define UVPThreshold  2400 //  1580-3100
 #define UV_Re_Threshold  2500
 
-#define OTPThreshold  60 //  
-#define UTPThreshold  -20 //
+#define OTPThreshold  60 
+#define UTPThreshold  -20 
 #define TempPThreshold -50
 
 
